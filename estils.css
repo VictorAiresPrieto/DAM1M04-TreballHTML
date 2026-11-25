@@ -9,9 +9,18 @@
     --groc-taronja:#ffc400;
     --taronja:#ff7b00;
     --groc-clar: #fff78b;
-    --groc-fosc: #9e9400;
+    --taronja-vermell: #ff1100;
 }
-* {
+
+/* Fonts */
+@font-face {
     font-family: "metal-mania";
-    src: url("/assets/fonts/Metal_Mania/MetalMania-Regular.ttf")
+    src: url("/assets/fonts/Metal_Mania/MetalMania-Regular.ttf");
+}
+
+* {
+    font-family: "metal-mania", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
