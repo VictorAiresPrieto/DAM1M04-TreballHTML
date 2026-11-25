@@ -5,6 +5,8 @@
 :root {
     --groc:#ffee00;
     --negre:#000000;
+    --gris-fosc: #303030;
+    --gris-clar: #5c5c5c;
     --blanc:#ffffffff;
     --groc-taronja:#ffc400;
     --taronja:#ff7b00;
@@ -18,9 +20,64 @@
     src: url("/assets/fonts/Metal_Mania/MetalMania-Regular.ttf");
 }
 
+/* General*/
 * {
     font-family: "metal-mania", sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+h1, h2, h3 {
+    font-family: "metal-mania", sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    font-style: inherit;
+}
+
+button {
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+
+    .dark {
+        background-color: var(--negre);
+        font-style: var(--blanc);
+        border-color: var(--gris-fosc);
+    }
+
+    .dark:hover {
+        background-color: var(--gris-fosc);
+        font-style: var(--groc-clar);
+        border-color: var(--gris-clar);
+    }
+
+    .light {
+        background-color: var(--groc);
+        font-style: var(--negre);
+        border-color: var(--groc-taronja);
+    }
+
+    .light:hover {
+        background-color: var(--groc-taronja);
+        font-style: var(--gris-fosc);
+        border-color: var(--taronja);
+    }
+}
+
+section {
+    padding: 32px 0;
+}
+
+.contenidor {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0, auto;
+    padding: 0, 32px;
 }
