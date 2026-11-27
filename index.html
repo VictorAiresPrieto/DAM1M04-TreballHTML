@@ -55,8 +55,83 @@
 
         <!-- Contingut principal de la pàgina (pendent de fer) -->
         <main>
-        </main>
+            
+            <!-- ===== HERO: fotografia del grup + eslògan + botó destacat =====
+                 La fotografia és una <img> que ocupa tot el fons de la secció.
+                 Cal afegir una foto del grup a assets/imatges/metallica-hero.jpg -->
+            <section class="hero">
+                <img class="hero__imatge"
+                     src="assets/imatges/metallica-hero.jpg"
+                     alt="Els quatre membres de Metallica a l'escenari">
 
+                <!-- Text del hero, damunt de la fotografia -->
+                <div class="contenidor hero__contingut">
+                    <!-- Només hi ha un <h1> per pàgina -->
+                    <h1>Metallica</h1>
+                    <p class="hero__eslogan">Quatre dècades de thrash metal sense baixar el volum.</p>
+                    <!-- És un enllaç (<a>) i no un <button> perquè porta a una altra pàgina -->
+                    <a class="boto boto--principal" href="musica.html">Escolta 72 Seasons</a>
+                </div>
+            </section>
+
+            <!-- ===== PROMO: darrer àlbum =====
+                 La caràtula és la imatge logo-metallica-detallat.jpg -->
+            <section class="promo">
+                <div class="contenidor promo__graella">
+
+                    <!-- Caràtula de l'àlbum -->
+                    <img class="promo__caratula"
+                         src="assets/imatges/logo-metallica-detallat.jpg"
+                         alt="Caràtula de 72 Seasons: un bressol cremat enmig d'objectes d'infantesa sobre fons groc">
+
+                    <!-- Informació de l'àlbum -->
+                    <div class="promo__text">
+                        <h2>72 Seasons</h2>
+                        <p>
+                            L'onzè àlbum d'estudi de Metallica, amb dotze cançons que miren
+                            enrere cap als primers anys de vida i com ens marquen.
+                        </p>
+                        <a class="boto boto--secundari" href="musica.html">Veure la discografia</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== NOVETATS: tres targetes amb les notícies principals =====
+                 Els textos són d'exemple: es poden canviar per les novetats que es vulguin mostrar -->
+            <section class="novetats">
+                <div class="contenidor">
+                    <h2>Novetats</h2>
+
+                    <!-- Graella: 1 columna en mòbil, 3 en escriptori -->
+                    <div class="novetats__graella">
+
+                        <!-- Cada novetat és un <article> independent -->
+                        <article class="targeta">
+                            <span class="targeta__categoria">Àlbum</span>
+                            <h3>72 Seasons</h3>
+                            <p>Ja pots escoltar el darrer treball de la banda, amb dotze temes nous.</p>
+                        </article>
+
+                        <article class="targeta">
+                            <span class="targeta__categoria">Gira</span>
+                            <h3>M72 World Tour</h3>
+                            <p>Dos concerts per ciutat, cadascun amb un repertori diferent.</p>
+                            <!-- Enllaç cap a la pàgina de concerts -->
+                            <a class="targeta__enllac" href="concerts.html">Veure concerts</a>
+                        </article>
+
+                        <article class="targeta">
+                            <span class="targeta__categoria">Single</span>
+                            <h3>Lux Æterna</h3>
+                            <p>El primer avanç de 72 Seasons, ideal per començar a escoltar l'àlbum.</p>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+            
         <!-- Peu de pàgina (pendent de fer) -->
         <footer>
         </footer>

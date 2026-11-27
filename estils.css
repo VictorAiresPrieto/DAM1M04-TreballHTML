@@ -317,3 +317,217 @@ section {
         transition: none;
     }
 }
+
+/* ==========================================================
+   COS DE LA PÀGINA
+   Fons negre i text blanc per a totes les pàgines.
+   ========================================================== */
+body {
+    background-color: var(--negre);
+    color: var(--blanc);
+}
+
+/* ==========================================================
+   BOTONS EN FORMA D'ENLLAÇ (.boto)
+   S'apliquen a <a class="boto ..."> . Hi ha dues variants:
+   .boto--principal (groc ple) i .boto--secundari (només vora).
+   ========================================================== */
+.boto {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 1.3rem;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Contorn blanc visible quan s'arriba al botó amb el teclat */
+.boto:focus-visible {
+    outline: 3px solid var(--blanc);
+    outline-offset: 3px;
+}
+
+/* Variant principal: fons groc i text negre */
+.boto--principal {
+    background-color: var(--groc);
+    color: var(--negre);
+    border-color: var(--groc-taronja);
+}
+
+.boto--principal:hover {
+    background-color: var(--groc-taronja);
+    border-color: var(--taronja);
+}
+
+/* Variant secundària: fons transparent, vora i text grocs */
+.boto--secundari {
+    background-color: transparent;
+    color: var(--groc);
+    border-color: var(--groc);
+}
+
+.boto--secundari:hover {
+    background-color: var(--groc);
+    color: var(--negre);
+}
+
+/* ==========================================================
+   HERO (portada de la pàgina principal)
+   ========================================================== */
+.hero {
+    position: relative;          /* Permet col·locar la foto i la capa fosca a dins */
+    display: flex;
+    align-items: flex-end;       /* El text queda a la part baixa del hero */
+    min-height: 70vh;            /* Ocupa un 70% de l'alçada de la pantalla */
+    padding: 0;                  /* Anul·la el padding que la regla "section" dóna per defecte */
+    overflow: hidden;
+    background-color: var(--gris-fosc); /* Color de reserva mentre no hi hagi foto */
+}
+
+/* Fotografia: ocupa tot el hero sense deformar-se */
+.hero__imatge {
+    position: absolute;
+    inset: 0;                    /* Equival a top, right, bottom i left a 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* Si es retalla, es manté la part de dalt (les cares) */
+}
+
+/* Capa fosca sobre la foto perquè el text es llegeixi bé */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.15));
+}
+
+/* El text va per sobre de la capa fosca (z-index més alt) */
+.hero__contingut {
+    position: relative;
+    z-index: 1;
+    padding-block: 64px;
+}
+
+/* Títol principal: gran i groc. clamp(mínim, ideal, màxim) l'adapta a cada pantalla */
+.hero h1 {
+    color: var(--groc);
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    line-height: 1;
+}
+
+/* Eslògan */
+.hero__eslogan {
+    max-width: 24ch;             /* Limita l'amplada a uns 24 caràcters per línia */
+    margin: 12px 0 28px;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    line-height: 1.2;
+}
+
+/* ==========================================================
+   PROMO (darrer àlbum)
+   ========================================================== */
+.promo {
+    background-color: var(--gris-fosc);
+    padding: 48px 0;
+}
+
+/* Graella: en mòbil, caràtula a dalt i text a sota */
+.promo__graella {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+}
+
+.promo__caratula {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 6px;
+}
+
+.promo h2 {
+    margin-bottom: 12px;
+    color: var(--groc);
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+.promo p {
+    max-width: 44ch;             /* Línies curtes = text més fàcil de llegir */
+    margin-bottom: 24px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+/* Escriptori: caràtula a l'esquerra i text a la dreta */
+@media (min-width: 768px) {
+    .promo__graella {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 56px;
+    }
+}
+
+/* ==========================================================
+   NOVETATS (targetes)
+   ========================================================== */
+.novetats {
+    padding: 56px 0;
+}
+
+.novetats h2 {
+    margin-bottom: 28px;
+    color: var(--groc);
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+/* Graella: 1 columna en mòbil */
+.novetats__graella {
+    display: grid;
+    gap: 20px;
+}
+
+/* Escriptori: 3 columnes iguals */
+@media (min-width: 768px) {
+    .novetats__graella {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Cada targeta */
+.targeta {
+    padding: 24px;
+    background-color: var(--gris-fosc);
+    border-top: 4px solid var(--groc);   /* Franja groga a la part superior */
+    border-radius: 10px;
+}
+
+/* Etiqueta petita (Àlbum, Gira, Single) */
+.targeta__categoria {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--groc-taronja);
+    font-size: 1.1rem;
+}
+
+.targeta h3 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.targeta p {
+    margin-bottom: 16px;
+    font-size: 1.15rem;
+    line-height: 1.4;
+}
+
+/* Enllaç dins de la targeta */
+.targeta__enllac {
+    color: var(--groc);
+    font-size: 1.15rem;
+    text-decoration: underline;
+}
+
+.targeta__enllac:hover,
+.targeta__enllac:focus-visible {
+    color: var(--groc-clar);
+}
