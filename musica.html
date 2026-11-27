@@ -1,17 +1,63 @@
 <!-- musica -->
 <!DOCTYPE html>
-<html lang="cat">
+<!-- lang="ca" indica que la pàgina està en català -->
+<html lang="ca">
     <head>
         <meta charset="UTF-8">
+        <!-- Imprescindible perquè la pàgina s'adapti a la pantalla del mòbil -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Text que apareix a la pestanya del navegador -->
         <title>Metallica-Música</title>
+        <!-- Icona de la pestanya -->
         <link rel="icon" href="assets/imatges/logo-metallica-simple.jpg">
+        <!-- Enllaç al full d'estils -->
         <link rel="stylesheet" href="estils.css">
     </head>
     <body>
-        <header>
+        <!-- ===== HEADER: franja superior amb logotip i menú ===== -->
+        <header class="capcalera">
+            <!-- .contenidor centra i limita l'amplada; .capcalera__barra col·loca els elements en fila -->
+            <div class="contenidor capcalera__barra">
+
+                <!-- Logotip + nom del grup. Fer clic porta a l'inici -->
+                <a class="marca" href="index.html">
+                    <img src="assets/imatges/logo-metallica-simple.jpg" alt="Logotip de Metallica">
+                    <span>Metallica</span>
+                </a>
+
+                <!-- Checkbox ocult: guarda si el menú mòbil està obert o tancat (sense JavaScript).
+                     L'id ha de coincidir amb el "for" del label. -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+                <!-- Botó hamburguesa: en clicar-lo marca/desmarca el checkbox de dalt.
+                     Les 3 <span> són les 3 ratlles. Només es veu en mòbil. -->
+                <label for="menu-toggle" class="menu-boto" aria-label="Obrir o tancar el menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+                <!-- Menú de navegació amb els enllaços a les 5 pàgines.
+                     IMPORTANT: ha d'anar DESPRÉS del checkbox perquè el CSS (~) funcioni. -->
+                <nav class="menu" aria-label="Navegació principal">
+                    <ul>
+                        <!-- class="activa" + aria-current="page" marquen la pàgina on som.
+                             En cada HTML s'ha de posar NOMÉS al seu propi enllaç. -->
+                        <li><a href="index.html">Inici</a></li>
+                        <li><a href="historia.html">Història</a></li>
+                        <li><a class="activa" href="musica.html" aria-current="page">Música</a></li>
+                        <li><a href="concerts.html">Concerts</a></li>
+                        <li><a href="contacte.html">Contacte</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
+
+        <!-- Contingut principal de la pàgina (pendent de fer) -->
         <main>
         </main>
+
+        <!-- Peu de pàgina (pendent de fer) -->
         <footer>
         </footer>
     </body>

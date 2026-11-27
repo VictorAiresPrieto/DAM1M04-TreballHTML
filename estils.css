@@ -1,7 +1,11 @@
 /* css */
 
-/* Paleta */
-
+/* ==========================================================
+   PALETA DE COLORS
+   Aquí es defineixen els colors una sola vegada. Després es
+   fan servir a tot el CSS amb var(--nom). Si vols canviar un
+   color de tota la web, només cal canviar-lo aquí.
+   ========================================================== */
 :root {
     --groc:#ffee00;
     --negre:#000000;
@@ -14,56 +18,73 @@
     --taronja-vermell: #ff1100;
 }
 
-/* Fonts */
+/* ==========================================================
+   FONTS
+   Carrega la tipografia Metal Mania des de la carpeta assets.
+   La ruta és RELATIVA (sense "/" al principi) perquè funcioni
+   també obrint els HTML directament des de l'ordinador.
+   ========================================================== */
 @font-face {
     font-family: "metal-mania";
-    src: url("/assets/fonts/Metal_Mania/MetalMania-Regular.ttf");
+    src: url("assets/fonts/Metal_Mania/MetalMania-Regular.ttf");
+    font-display: swap; /* Mostra un text provisional mentre carrega la font */
 }
 
-/* General*/
+/* ==========================================================
+   ESTILS GENERALS
+   ========================================================== */
+
+/* "*" afecta a TOTS els elements de la pàgina */
 * {
-    font-family: "metal-mania", sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    font-family: "metal-mania", sans-serif; /* Font per a tota la web (sans-serif si falla) */
+    box-sizing: border-box; /* El padding i el border no fan créixer la mida d'un element */
+    padding: 0; /* Esborra els espais interiors per defecte del navegador */
+    margin: 0;  /* Esborra els espais exteriors per defecte del navegador */
 }
 
+/* Títols: cursiva i negreta */
 h1, h2, h3 {
     font-family: "metal-mania", sans-serif;
     font-style: italic;
     font-weight: bold;
 }
 
+/* Enllaços: treu el subratllat que porten per defecte */
 a {
     text-decoration: none;
-    font-style: inherit;
+    font-style: inherit; /* Hereta la cursiva (o no) de l'element pare */
 }
 
+/* Botons: forma general. Les classes .dark i .light són dues variants de color */
 button {
     display: inline-block;
-    border-radius: 10px;
+    border-radius: 10px;   /* Cantonades arrodonides */
     font-size: 15px;
     font-weight: 500;
-    padding: 10px 20px;
+    padding: 10px 20px;    /* Espai interior: 10px dalt/baix, 20px esquerra/dreta */
 
+    /* Variant fosca (fons negre) */
     .dark {
         background-color: var(--negre);
         font-style: var(--blanc);
         border-color: var(--gris-fosc);
     }
 
+    /* Variant fosca quan passes el ratolí per sobre */
     .dark:hover {
         background-color: var(--gris-fosc);
         font-style: var(--groc-clar);
         border-color: var(--gris-clar);
     }
 
+    /* Variant clara (fons groc) */
     .light {
         background-color: var(--groc);
         font-style: var(--negre);
         border-color: var(--groc-taronja);
     }
 
+    /* Variant clara quan passes el ratolí per sobre */
     .light:hover {
         background-color: var(--groc-taronja);
         font-style: var(--gris-fosc);
@@ -71,13 +92,228 @@ button {
     }
 }
 
+/* Seccions: espai a dalt i a baix de cada <section> */
 section {
     padding: 32px 0;
 }
 
+/* Contenidor: caixa centrada que limita l'amplada del contingut */
 .contenidor {
-    width: 100%;
-    max-width: 1120px;
-    margin: 0, auto;
-    padding: 0, 32px;
+    width: 100%;          /* Ocupa tot l'ample disponible... */
+    max-width: 1120px;    /* ...però mai més de 1120px */
+    margin: 0 auto;       /* "auto" als costats = centrat horitzontalment */
+    padding: 0 32px;      /* 32px de marge interior als costats */
+}
+
+/* ==========================================================
+   HEADER I MENÚ DE NAVEGACIÓ
+   ========================================================== */
+
+/* --- Capçalera (tota la franja negra de dalt) --- */
+.capcalera {
+    position: sticky;   /* Es queda fixa a dalt mentre fas scroll */
+    top: 0;             /* Es queda enganxada a la part superior de la pantalla */
+    z-index: 100;       /* Es dibuixa per sobre de la resta de contingut */
+    background-color: var(--negre);
+    border-bottom: 4px solid var(--groc); /* Línia groga sota el header */
+}
+
+/* Fila interior del header: logotip a l'esquerra, menú a la dreta */
+.capcalera__barra {
+    position: relative;      /* Necessari perquè el checkbox ocult se situï dins d'aquesta caixa */
+    display: flex;           /* Posa els fills un al costat de l'altre */
+    flex-wrap: wrap;         /* Si no caben, baixen a la línia següent (així el menú mòbil queda a sota) */
+    align-items: center;     /* Centra els fills verticalment */
+    justify-content: space-between; /* Separa al màxim: logo a l'esquerra, menú/botó a la dreta */
+    padding-block: 10px;     /* Espai a dalt i a baix */
+}
+
+/* --- Marca: logotip + nom del grup --- */
+.marca {
+    display: flex;           /* Imatge i text en una mateixa fila */
+    align-items: center;     /* Alineats al centre vertical */
+    gap: 12px;               /* Separació entre el logotip i el nom */
+    color: var(--groc);      /* Color del nom "Metallica" */
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;  /* Una mica d'espai entre lletres */
+}
+
+/* Mida del logotip */
+.marca img {
+    display: block;          /* Evita un petit espai buit sota la imatge */
+    width: 48px;
+    height: 48px;
+    object-fit: cover;       /* La imatge omple el quadrat sense deformar-se */
+    border-radius: 6px;
+}
+
+/* El nom canvia de color en passar el ratolí o en navegar amb teclat */
+.marca:hover,
+.marca:focus-visible {
+    color: var(--groc-clar);
+}
+
+/* --- Checkbox (la "clau" que obre i tanca el menú en mòbil) ---
+   Està amagat visualment, però continua existint perquè CSS
+   pugui saber si està marcat (:checked). No es fa servir
+   display:none perquè així el teclat encara el pot activar. */
+.menu-toggle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+/* --- Botó hamburguesa (és el <label> lligat al checkbox) ---
+   En clicar el label, el checkbox es marca/desmarca. */
+.menu-boto {
+    display: flex;
+    flex-direction: column;  /* Les 3 ratlles s'apilen en vertical */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;                /* Separació entre ratlles */
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--groc);
+    border-radius: 10px;
+    cursor: pointer;         /* Cursor de "mà" en passar-hi per sobre */
+}
+
+/* Cadascuna de les 3 ratlles del botó */
+.menu-boto span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--groc);
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Anima el canvi a "X" */
+}
+
+/* Contorn blanc quan el botó té el focus del teclat (accessibilitat).
+   El "+" selecciona el label que va just després del checkbox. */
+.menu-toggle:focus-visible + .menu-boto {
+    outline: 3px solid var(--blanc);
+    outline-offset: 3px;
+}
+
+/* Quan el menú és obert (checkbox :checked), les 3 ratlles es transformen en una X */
+.menu-toggle:checked + .menu-boto span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);   /* Ratlla de dalt: baixa i gira */
+}
+.menu-toggle:checked + .menu-boto span:nth-child(2) {
+    opacity: 0;                                  /* Ratlla del mig: desapareix */
+}
+.menu-toggle:checked + .menu-boto span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg); /* Ratlla de baix: puja i gira */
+}
+
+/* --- Menú en MÒBIL (per defecte està tancat) ---
+   Truc d'animació: grid-template-rows passa de 0fr (alçada 0)
+   a 1fr (alçada completa). Així es pot animar l'obertura
+   sense saber l'alçada exacta del menú. */
+.menu {
+    flex-basis: 100%;          /* Ocupa tota l'amplada i queda sota el logo i el botó */
+    display: grid;
+    grid-template-rows: 0fr;   /* Alçada 0 = tancat */
+    opacity: 0;                /* Invisible */
+    visibility: hidden;        /* Els enllaços no es poden clicar ni tabular quan està tancat */
+    /* El 0.35s del final de visibility espera que acabi l'animació abans d'amagar-lo */
+    transition: grid-template-rows 0.35s ease,
+                opacity 0.35s ease,
+                visibility 0s linear 0.35s;
+}
+
+/* Quan el checkbox està marcat, el menú germà ("~") s'obre */
+.menu-toggle:checked ~ .menu {
+    grid-template-rows: 1fr;   /* Alçada completa = obert */
+    opacity: 1;
+    visibility: visible;
+    /* Aquí visibility canvia a l'instant perquè es vegi mentre s'obre */
+    transition: grid-template-rows 0.35s ease,
+                opacity 0.35s ease,
+                visibility 0s;
+}
+
+/* La llista dels enllaços. Cal min-height:0 i overflow:hidden perquè
+   el truc de grid-template-rows pugui reduir-la fins a 0. */
+.menu ul {
+    min-height: 0;
+    overflow: hidden;
+    list-style: none;          /* Treu els punts de la llista */
+}
+
+/* Cada enllaç del menú (en mòbil ocupa tota la fila) */
+.menu a {
+    display: block;            /* Tota la fila és clicable, no només el text */
+    padding: 14px 8px;         /* Mida còmoda per tocar amb el dit */
+    color: var(--blanc);
+    font-size: 1.3rem;
+    border-top: 1px solid var(--gris-fosc); /* Línia separadora entre enllaços */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Canvi suau en passar el ratolí */
+}
+
+/* Enllaç en passar el ratolí o amb el focus del teclat */
+.menu a:hover,
+.menu a:focus-visible {
+    color: var(--groc-clar);
+    background-color: var(--gris-fosc);
+}
+
+/* --- Pàgina activa ---
+   La classe "activa" només la té l'enllaç de la pàgina on ets.
+   Es destaca amb fons groc i text negre. */
+.menu a.activa {
+    background-color: var(--groc);
+    color: var(--negre);
+}
+
+/* La pàgina activa també reacciona en passar el ratolí (taronja suau) */
+.menu a.activa:hover,
+.menu a.activa:focus-visible {
+    background-color: var(--groc-taronja);
+    color: var(--negre);
+}
+
+/* --- Menú en ESCRIPTORI ---
+   A partir de 768px d'ample de pantalla, s'amaga el botó
+   hamburguesa i el menú es mostra sempre en horitzontal. */
+@media (min-width: 768px) {
+    /* Ja no cal el botó hamburguesa */
+    .menu-boto {
+        display: none;
+    }
+
+    /* El menú sempre visible, estigui el checkbox marcat o no */
+    .menu,
+    .menu-toggle:checked ~ .menu {
+        flex-basis: auto;          /* Ja no ocupa tota la fila: queda a la dreta */
+        grid-template-rows: 1fr;
+        opacity: 1;
+        visibility: visible;
+        transition: none;          /* Sense animació d'obertura */
+    }
+
+    /* Els enllaços es posen un al costat de l'altre */
+    .menu ul {
+        display: flex;
+        gap: 6px;
+        overflow: visible;
+    }
+
+    /* Enllaços en format "botó" horitzontal */
+    .menu a {
+        padding: 8px 16px;
+        font-size: 1.2rem;
+        border-top: 0;            /* Fora la línia separadora */
+        border-radius: 8px;
+    }
+}
+
+/* Si l'usuari ha demanat menys moviment al sistema, es desactiven les animacions */
+@media (prefers-reduced-motion: reduce) {
+    .menu,
+    .menu-toggle:checked ~ .menu,
+    .menu-boto span,
+    .menu a {
+        transition: none;
+    }
 }
